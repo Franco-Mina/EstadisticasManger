@@ -23,8 +23,7 @@ public class EstadisticasManager {
 		
 		int intentos = 0;
 		boolean exito = false;		
-		
-		
+				
 		try {
 			do {
 				exito = this.CrearReportes() == 0;
@@ -57,7 +56,7 @@ public class EstadisticasManager {
 			
 			ReportesResponseBean response = gson.fromJson(json, ReportesResponseBean.class);
 			
-			if(response.getRespuesta() == 0) {
+			if(response.getRespuesta() == 1) {
 				int actualizados = this.MarcarEnviados(listaReportes);
 				if(actualizados != 0) {
 					//Guardar en log mensaje con el fallo

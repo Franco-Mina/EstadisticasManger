@@ -12,8 +12,7 @@ import ar.edu.ubp.das.manager.EstadisticasManager;
 public class Estadisticas {
 
 	public static void main(String[] args) {
-		
-		
+				
 		Runnable runnable = new Runnable() {			
 			@Override
 			public void run() {
@@ -21,7 +20,7 @@ public class Estadisticas {
 				if(Thread.currentThread().isInterrupted()) return;			
 				EstadisticasManager manager = new EstadisticasManager();				
 				int result = 0;
-				
+				System.out.println("Generando reportes");
 				result = manager.GenerarReportes();
 				if(result != 0) System.err.println("Error");
 			}
@@ -32,7 +31,6 @@ public class Estadisticas {
 		//Se configura el schedule, el primer numero es el delay hasta la primera ejecucion
 		//el segundo es cada cuanto se repite y el ultimo valor es la unidad de tiempo
 		executor.scheduleAtFixedRate(runnable, 5, 12, TimeUnit.HOURS);	
-		
 		InputStreamReader inputStream = new InputStreamReader(System.in);
 		BufferedReader bufferedReader = new BufferedReader(inputStream);
 		

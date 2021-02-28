@@ -15,8 +15,8 @@
 		<nro_conexion>2</nro_conexion>
 		<entidad>municipalidad</entidad>
 		<tipo>Soap</tipo>
-		<url>http://localhost:8080/MunicipalidadCxf/services/EstadisticaPort?wsdl</url>
-		<accion>enviarReporte</accion>
+		<url>http://localhost:8080/MunicipalidadCxf/services/GuardarEstadisticasPort?wsdl</url>
+		<accion>guardarEstadisticas</accion>
 		<req_token>true</req_token>
 	</conexion>
 </conexiones>
