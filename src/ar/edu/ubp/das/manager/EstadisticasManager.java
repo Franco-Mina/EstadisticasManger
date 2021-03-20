@@ -11,13 +11,15 @@ import ar.edu.ubp.das.bean.ws.ReportesResponseBean;
 import ar.edu.ubp.das.conections.ConnectionManager;
 import ar.edu.ubp.das.db.Dao;
 import ar.edu.ubp.das.db.DaoFactory;
+import ar.edu.ubp.das.logger.Logger;
 import ar.edu.ubp.das.token.db.ConsoleTokenManger;
 
 public class EstadisticasManager {
 	
-	private String cadenaConexion = "jdbc:sqlserver://172.10.3.106;databaseName=gobierno_provincial;user=sa;password=Francomina1";
-	private String usuario        = "sa";
-	private String password       = "Francomina1";
+	private final String cadenaConexion = "jdbc:sqlserver://172.10.3.106;databaseName=gobierno_provincial;user=sa;password=Francomina1";
+	private final String usuario        = "sa";
+	private final String password       = "Francomina1";
+	private final String logPath = "c:/Logger/Estadisticas/";
 	
 	public int GenerarReportes() {
 		
@@ -31,7 +33,7 @@ public class EstadisticasManager {
 			}while (intentos < 3 && !exito);
 			
 			if(!exito) {
-				System.out.println("No se pudieron generar los reportes.");
+				Logger.getLogger(this.logPath).escribirLog("No se pudieron generar los reportes.");
 				return -1;
 			}
 			
@@ -59,16 +61,17 @@ public class EstadisticasManager {
 			if(response.getRespuesta() == 1) {
 				int actualizados = this.MarcarEnviados(listaReportes);
 				if(actualizados != 0) {
-					//Guardar en log mensaje con el fallo
+					Logger.getLogger(this.logPath).escribirLog("No se pudieron marcar como enviados los reportes.");
 				}else {
 					this.MarcarEnviados(listaReportes);
 				}
+			}else {
+				Logger.getLogger(this.logPath).escribirLog("Ocurrio un error al enviar los reportes, se volvera a intentar la proxima vez que se generen nuevos reportes.");
 			}
 			
 			return 0;
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Logger.getLogger(this.logPath).escribirLog(e);
 			return -1;
 		}			
 	}
@@ -82,8 +85,7 @@ public class EstadisticasManager {
 			
 			return 0;			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Logger.getLogger(this.logPath).escribirLog(e);
 			return -1;
 		}
 	}
@@ -97,8 +99,7 @@ public class EstadisticasManager {
 			
 			return listaReportes;			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Logger.getLogger(this.logPath).escribirLog(e);
 			return null;
 		}
 	}
@@ -114,8 +115,7 @@ public class EstadisticasManager {
 			
 			return 0;			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Logger.getLogger(this.logPath).escribirLog(e);
 			return -1;
 		}
 	}

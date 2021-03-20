@@ -7,12 +7,14 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
+import ar.edu.ubp.das.logger.Logger;
 import ar.edu.ubp.das.manager.EstadisticasManager;
 
 public class Estadisticas {
 
 	public static void main(String[] args) {
 				
+		String logPath = "c:/Logger/Estadisticas/";
 		Runnable runnable = new Runnable() {			
 			@Override
 			public void run() {
@@ -50,12 +52,8 @@ public class Estadisticas {
 					System.out.println("Continuar ");
 					break;
 			}
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		} catch (InterruptedException | IOException e) {
+			Logger.getLogger(logPath).escribirLog(e);
 		}
 	}
 
