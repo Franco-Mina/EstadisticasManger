@@ -32,7 +32,7 @@ public class Estadisticas {
 		ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
 		//Se configura el schedule, el primer numero es el delay hasta la primera ejecucion
 		//el segundo es cada cuanto se repite y el ultimo valor es la unidad de tiempo
-		executor.scheduleAtFixedRate(runnable, 5, 12, TimeUnit.HOURS);	
+		executor.scheduleAtFixedRate(runnable, 0, 12, TimeUnit.HOURS);	
 		InputStreamReader inputStream = new InputStreamReader(System.in);
 		BufferedReader bufferedReader = new BufferedReader(inputStream);
 		

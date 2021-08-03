@@ -19,7 +19,7 @@ public class EstadisticasManager {
 	private final String cadenaConexion = "jdbc:sqlserver://172.10.3.106;databaseName=gobierno_provincial;user=sa;password=Francomina1";
 	private final String usuario        = "sa";
 	private final String password       = "Francomina1";
-	private final String logPath = "c:/Logger/Estadisticas/";
+	private final String logPath        = "c:/Logger/Estadisticas/";
 	
 	public int GenerarReportes() {
 		
